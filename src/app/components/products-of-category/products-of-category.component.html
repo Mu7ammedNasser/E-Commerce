@@ -1,0 +1,50 @@
+<div class="container products-container">
+  <!-- Header Section -->
+  <div class="row">
+    <div class="col-12">
+      <h1 class="display-5 text-main">Products of Category</h1>
+      <hr />
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <div class="row">
+    @for ( product of productList; track product._id) {
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <img
+          [src]="product.imageCover"
+          class="w-100"
+          alt="{{ product.title }}"
+        />
+
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">
+            <strong>Price:</strong> {{ product.price | currency }}
+          </p>
+          <p class="card-text">
+            <strong>Brand:</strong> {{ product.brand.name }}
+          </p>
+          <p class="card-text">
+            <span class="badge bg-warning text-dark">
+              <i class="bi bi-star-fill"></i> {{ product.ratingsAverage }}
+            </span>
+            <span>({{ product.ratingsQuantity }} ratings)</span>
+          </p>
+        </div>
+
+        <div class="card-footer">
+          <button
+            class="btn btn-success btn-sm"
+            (click)="addProductToCart(product.id)"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

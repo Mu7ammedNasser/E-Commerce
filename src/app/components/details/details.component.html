@@ -1,0 +1,44 @@
+@if(detailsList){
+<section class="container my-5">
+  <div class="row align-items-center">
+    <div class="col-md-4">
+      <owl-carousel-o [options]="customOptionsDetails">
+        @for (image of detailsList.images; track $index) {
+        <ng-template carouselSlide>
+          <img [src]="image" [alt]="detailsList.title" />
+        </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
+    <div class="col-md-8">
+      <h3 class="text-main">{{ detailsList.title }}</h3>
+      <p>{{ detailsList.description }}</p>
+      <div class="d-flex w-75 justify-content-between align-items-center">
+        <p class="fw-bold">{{ detailsList.price }}EGP</p>
+        <div>
+          @for (num of [1,2,3,4,5].slice(0 , detailsList.ratingsAverage); track
+          $index) {
+          <i class="fas fa-star rating-color"></i>
+          } @if(detailsList.ratingsAverage % 1 !== 0){
+          <i class="fa-solid fa-star-half-stroke rating-color"></i>
+          }
+          <span class="text-muted">{{ detailsList.ratingsAverage }} </span>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between w-75 align-items-center">
+        <p class="text-capitalize fw-bold">add to wish list</p>
+        <button
+          class="btn btn-link"
+          (click)="addProductToWishList(detailsList.id)"
+        >
+          <i
+            class="fas fa-heart fa-xl"
+            [ngClass]="{ 'text-danger': isInWishList(detailsList.id) }"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+}

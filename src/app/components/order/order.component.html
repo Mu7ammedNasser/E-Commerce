@@ -1,0 +1,74 @@
+<section class="my-3 p-4 container bg-main-light rounded shadow">
+  <h1 class="text-main h2">Shipping Address</h1>
+  <form [formGroup]="orders" (ngSubmit)="orderSubmit()">
+    <!-- Details Field -->
+    <div class="my-2">
+      <label for="details">Details</label>
+      <textarea
+        formControlName="details"
+        placeholder="Product Details"
+        class="form-control"
+        id="details"
+      ></textarea>
+
+      @if (orders.get('details')?.errors && orders.get('details')?.touched) {
+      <div class="alert alert-danger w-50">
+        @if (orders.get('details')?.getError('required')) {
+        <p class="m-0">Details are required</p>
+        } @else if (orders.get('details')?.getError('minlength')) {
+        <p class="m-0">Details must contain at least 10 letters</p>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- Phone Field -->
+    <div class="my-2">
+      <label for="phone">Phone</label>
+      <input
+        formControlName="phone"
+        placeholder="01142977722"
+        type="tel"
+        class="form-control"
+        id="phone"
+      />
+
+      @if (orders.get('phone')?.errors && orders.get('phone')?.touched) {
+      <div class="alert alert-danger w-50">
+        @if (orders.get('phone')?.getError('required')) {
+        <p class="m-0">Phone is required</p>
+        } @else if (orders.get('phone')?.getError('pattern')) {
+        <p class="m-0">Phone must be a valid Egyptian number</p>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- City Field -->
+    <div class="my-2">
+      <label for="city">City</label>
+      <input
+        formControlName="city"
+        placeholder="Al-maadi/cairo"
+        type="text"
+        class="form-control"
+        id="city"
+      />
+
+      @if (orders.get('city')?.errors && orders.get('city')?.touched) {
+      <div class="alert alert-danger w-50">
+        @if (orders.get('city')?.getError('required')) {
+        <p class="m-0">City is required</p>
+        } @else if (orders.get('city')?.getError('minlength')) {
+        <p class="m-0">City must contain at least 10 characters</p>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn-main text-capitalize fw-bold" type="submit">
+      Check out
+    </button>
+  </form>
+</section>

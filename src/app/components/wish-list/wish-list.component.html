@@ -1,0 +1,67 @@
+<div class="container wishlist-container">
+  <!-- Header Section -->
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center py-3">
+        <h1 class="display-5 text-main">Your Wishlist</h1>
+        <span class="badge bg-primary fs-5"
+          >{{ productDetails.length }} Items</span
+        >
+      </div>
+
+      <hr />
+    </div>
+  </div>
+
+  <!-- Wishlist Items -->
+  <div class="row">
+    <!-- Using @for to loop over productDetails -->
+
+    @if(!isLoading && productDetails.length > 0) { @for (product of
+    productDetails; track product.id) {
+    <div class="col-md-3 mb-4">
+      <div class="card h-100 product">
+        <img
+          [src]="product.imageCover"
+          class="w-100"
+          alt="{{ product.title }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text">
+            <strong>Price:</strong> {{ product.price | currency }}
+          </p>
+          <p class="card-text">
+            <strong>Brand:</strong> {{ product.brand.name }}
+          </p>
+          <p class="card-text">
+            <span class="badge bg-warning text-dark">
+              <i class="bi bi-star-fill"></i> {{ product.ratingsAverage }}
+            </span>
+            <span>({{ product.ratingsQuantity }} ratings)</span>
+          </p>
+        </div>
+        <div class="card-footer">
+          <button
+            class="btn btn-success btn-sm"
+            (click)="addProductToCart(product.id)"
+          >
+            Add to Cart
+          </button>
+          <button
+            class="btn btn-danger btn-sm ms-2"
+            (click)="removeProduct(product.id)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+    } }
+  </div>
+  @if(!isLoading && productDetails.length === 0) {
+
+  <div class="alert alert-info text-center">No items in your wish list</div>
+  }
+</div>

@@ -1,0 +1,39 @@
+<section class="my-3 p-4 container bg-main-light rounded shadow">
+  <h1 class="h2 text-main">All Brands</h1>
+
+  <div class="row">
+    <!-- Using @for to loop through brandsList -->
+    @for ( brand of brandsList; track brand._id) {
+    <div class="col-md-3 d-flex align-items-stretch">
+      <div
+        class="card mb-4 shadow-sm w-100 product cr"
+        (click)="getImageSrc(brand.image, brand.name)"
+      >
+        <img
+          class="card-img-top"
+          [src]="brand.image"
+          [alt]="brand.name"
+          (error)="brand.image = 'assets/default-image.jpg'"
+        />
+      </div>
+    </div>
+    }
+  </div>
+</section>
+
+<div
+  class="img-up position-fixed w-100 h-100 top-0 start-0 justify-content-center align-items-center d-none"
+  #clickedElement
+>
+  <div (click)="hideCard()" class="outer position-absolute top-0 end-0 m-5">
+    <div class="inner">
+      <label class="fw-bold">Back</label>
+    </div>
+  </div>
+
+  <div class="card d-flex justify-content-center flex-column text-center">
+    <img [src]="selectedImage" alt="port" />
+
+    <h3>{{ brandName }}</h3>
+  </div>
+</div>

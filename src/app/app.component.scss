@@ -1,0 +1,12 @@
+::ng-deep .custom-text {
+  color: #fff;
+  font-family: "Arial", sans-serif;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+::ng-deep .loading-1 {
+  background: linear-gradient(to right, #0aad0a, #3bcb3b);
+  padding: 30px;
+  border-radius: 10px;
+}

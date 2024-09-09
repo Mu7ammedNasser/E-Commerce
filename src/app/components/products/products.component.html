@@ -1,0 +1,58 @@
+<section class="mt-1 mb-4 container">
+  <h2 class="text-main">All Product:</h2>
+  <input
+    type="text"
+    class="form-control w-50 mx-auto"
+    placeholder="Search By Name..."
+    [(ngModel)]="searchValue"
+  />
+
+  <div>
+    <div class="row g-3 my-3">
+      @for (product of productList ; track product.id) {
+      <div class="col-md-3">
+        <div class="border p-2 product cr">
+          <button
+            class="btn btn-link"
+            (click)="addProductToWishList(product.id)"
+          >
+            <i
+              class="fas fa-heart fa-xl"
+              [ngClass]="{ 'text-danger': isInWishList(product.id) }"
+            ></i>
+          </button>
+
+          <div
+            class="position-relative"
+            [routerLink]="['/details', product.id]"
+          >
+            <img
+              class="w-100"
+              [src]="product.imageCover"
+              [alt]="product.title"
+            />
+            <h3 class="small text-main">{{ product.category.name }}</h3>
+            <h4 class="h6">{{ product.title | termText : 2 }}</h4>
+            <div class="d-flex justify-content-between align-items-center">
+              <p class="m-0">{{ product.price }} EGP</p>
+              <div>
+                @for (num of [1,2,3,4,5].slice(0 , product.ratingsAverage);
+                track $index) {
+                <i class="fas fa-star rating-color"></i>
+                } @if(hasFraction(product.ratingsAverage)){
+                <i class="fa-solid fa-star-half-stroke rating-color"></i>
+                }
+                <span class="text-muted">{{ product.ratingsAverage }} </span>
+              </div>
+            </div>
+          </div>
+
+          <button (click)="addProductToCart(product.id)" class="btn-main w-100">
+            Add Product
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

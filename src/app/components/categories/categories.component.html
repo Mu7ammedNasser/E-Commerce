@@ -1,0 +1,25 @@
+<section class="my-3 p-4 container bg-main-light rounded shadow">
+  <h1 class="h2 text-main">All Categories</h1>
+
+  <div class="row">
+    <!-- Using @for to loop through categoriesList -->
+    @for ( category of categoriesList; track category._id) {
+    <div class="col-md-3">
+      <div
+        class="card mb-4 shadow-sm product cr"
+        (click)="dispalyAllProductsFromTisCategory(category.name)"
+      >
+        <img
+          class="w-100"
+          [src]="category.image"
+          height="250px"
+          [alt]="category.name"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ category.name }}</h5>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

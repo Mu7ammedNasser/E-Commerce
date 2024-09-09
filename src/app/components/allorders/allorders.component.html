@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  @for (order of orders; track $index) {
+  <div class="order card mb-4 border-light rounded-3 shadow-lg">
+    <div class="card-body">
+      <p class="card-text mb-2 h3">
+        <span class="h3 text-main">Total Price:</span>
+        {{ order.totalOrderPrice | currency }}
+      </p>
+
+      <h6 class="mb-3">Cart Items:</h6>
+      @for (item of order.cartItems; track $index) {
+      <div
+        class="item d-flex align-items-center justify-content-between mb-3 border rounded p-3 bg-light"
+      >
+        <div class="col-9">
+          <h6 class="mb-1">
+            <strong class="text-main">Title:</strong> {{ item.product.title }}
+          </h6>
+          <p class="mb-1">
+            <strong class="text-main">Quantity:</strong> {{ item.count }}
+          </p>
+          <p class="mb-0">
+            <strong class="text-main">Price :</strong>
+            {{ item.price | currency }}
+          </p>
+        </div>
+        <div class="col-1">
+          <img
+            [src]="item.product.imageCover"
+            [alt]="item.product.title"
+            class="img-fluid rounded"
+          />
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  } @if(orders.length === 0 && !isLoading) {
+
+  <div class="alert alert-info text-center">No orders found.</div>
+  }
+</div>

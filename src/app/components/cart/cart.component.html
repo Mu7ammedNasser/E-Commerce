@@ -1,0 +1,76 @@
+<section class="my-3 p-4 container bg-main-light rounded shadow">
+  <!-- Display Shopping Cart only if there are items and loading is complete -->
+  @if (cartItems?.products?.length !== 0 && !isLoading) {
+  <h1 class="text-capitalize h2 text-main mb-3">Shopping Cart</h1>
+  <p class="text-capitalize mb-4">
+    Total cart price:
+    <span class="text-main fw-bold fs-5">{{
+      cartItems.totalCartPrice | currency : "GBP"
+    }}</span>
+  </p>
+
+  @for (item of cartItems?.products; track item.product.id) {
+  <div
+    class="d-flex justify-content-between align-items-center bg-white px-2 mb-3 shadow-sm border-bottom border-black border-opacity-25"
+  >
+    <div class="d-flex align-items-center col-8">
+      <div class="col-2">
+        <img
+          class="w-100 rounded"
+          [src]="item.product.imageCover"
+          [alt]="item.product.title"
+        />
+      </div>
+      <div class="col-10 ps-3">
+        <h3 class="h5 mb-2">{{ item.product.title }}</h3>
+        <p class="mb-1">
+          Price:
+          <span class="text-main fw-bold">{{
+            item.price | currency : "GBP"
+          }}</span>
+        </p>
+        <p class="cr" (click)="deleteItem(item.product.id)">
+          <i class="fa-solid fa-trash-can text-danger"></i> Remove
+        </p>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="d-flex justify-content-end align-items-center">
+        <p
+          (click)="
+            item.count > 1 && updateCount(item.product.id, item.count - 1)
+          "
+          class="m-0 text-main cr"
+        >
+          <i class="fa-solid fa-square-minus fa-2x"></i>
+        </p>
+        <span class="fs-5 mx-2">{{ item.count }}</span>
+        <p
+          (click)="updateCount(item.product.id, item.count + 1)"
+          class="m-0 text-main cr"
+        >
+          <i class="fa-solid fa-square-plus fa-2x"></i>
+        </p>
+      </div>
+    </div>
+  </div>
+  }
+
+  <div class="d-flex justify-content-around align-items-center">
+    <button [routerLink]="['/order', cartItems._id]" class="btn-main my-2">
+      Order!
+    </button>
+    <button (click)="clearData()" class="btn btn-danger my-2">
+      Clear Cart
+    </button>
+  </div>
+  } @if (isLoading) {
+  <div class="text-center">
+    <div class="spinner-border text-main" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  } @if (cartItems?.products?.length === 0 && !isLoading) {
+  <div class="alert alert-info text-center">No items in your cart</div>
+  }
+</section>
