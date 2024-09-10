@@ -8,15 +8,12 @@
           >{{ productDetails.length }} Items</span
         >
       </div>
-
       <hr />
     </div>
   </div>
 
   <!-- Wishlist Items -->
   <div class="row">
-    <!-- Using @for to loop over productDetails -->
-
     @if(!isLoading && productDetails.length > 0) { @for (product of
     productDetails; track product.id) {
     <div class="col-md-3 mb-4">
