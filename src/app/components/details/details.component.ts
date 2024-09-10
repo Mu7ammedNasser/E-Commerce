@@ -110,4 +110,20 @@ export class DetailsComponent implements OnInit {
       });
     }
   }
+
+  addProductToCart(id: string): void {
+    this._CartService.addProductToCart(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this._CartService.numberOfCartItem.set(res.numOfCartItems);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: res.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
+    });
+  }
 }
