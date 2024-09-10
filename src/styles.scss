@@ -103,6 +103,17 @@ textarea:focus {
   transform: translateY(0);
 }
 
+@media (max-width: 768px) {
+  .product .btn-main {
+    transform: translateY(0);
+    transition: none;
+  }
+
+  .product:hover .btn-main {
+    transform: translateY(0);
+  }
+}
+
 .swal2-styled {
   background-color: #0aad0a !important;
 }
