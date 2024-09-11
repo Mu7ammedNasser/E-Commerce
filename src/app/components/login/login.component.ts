@@ -8,13 +8,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { pipe, Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
+import { pipeline } from 'stream';
+import { SearchPipe } from '../../core/pipes/search.pipe';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgClass, ReactiveFormsModule, RouterLink],
+  imports: [NgClass, ReactiveFormsModule, RouterLink, SearchPipe],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

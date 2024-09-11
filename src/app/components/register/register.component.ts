@@ -2,7 +2,6 @@ import { Component, inject, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
