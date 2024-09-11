@@ -7,11 +7,12 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrdersService } from '../../core/services/orders.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
 })

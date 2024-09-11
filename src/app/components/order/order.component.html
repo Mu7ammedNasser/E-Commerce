@@ -9,6 +9,10 @@
         placeholder="Product Details"
         class="form-control"
         id="details"
+        [ngClass]="{
+          'is-valid': !orders.get('details')?.errors && (orders.get('details')?.touched || orders.get('details')?.dirty)  ,
+          'is-invalid': orders.get('details')?.errors && (orders.get('details')?.touched || orders.get('details')?.dirty) ,
+        }"
       ></textarea>
 
       @if (orders.get('details')?.errors && orders.get('details')?.touched) {
@@ -31,6 +35,10 @@
         type="tel"
         class="form-control"
         id="phone"
+        [ngClass]="{
+          'is-valid': !orders.get('phone')?.errors && (orders.get('phone')?.touched || orders.get('phone')?.dirty)  ,
+          'is-invalid': orders.get('phone')?.errors && (orders.get('phone')?.touched || orders.get('phone')?.dirty) ,
+        }"
       />
 
       @if (orders.get('phone')?.errors && orders.get('phone')?.touched) {
@@ -53,6 +61,10 @@
         type="text"
         class="form-control"
         id="city"
+        [ngClass]="{
+          'is-valid': !orders.get('city')?.errors && (orders.get('city')?.touched || orders.get('city')?.dirty)  ,
+          'is-invalid': orders.get('city')?.errors && (orders.get('city')?.touched || orders.get('city')?.dirty) ,
+        }"
       />
 
       @if (orders.get('city')?.errors && orders.get('city')?.touched) {

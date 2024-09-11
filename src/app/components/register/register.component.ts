@@ -25,7 +25,7 @@ export class RegisterComponent implements OnDestroy {
   private readonly _FormBuilder = inject(FormBuilder);
   private readonly _Router = inject(Router);
 
-  msgError: string = '';
+  msgError: string | boolean = '';
   isLoading: boolean = false;
   messageSuccess: boolean = false;
   registerSub!: Subscription;
@@ -86,6 +86,7 @@ export class RegisterComponent implements OnDestroy {
             console.log(res);
             if (res.message == 'success') {
               this.messageSuccess = true;
+              this.msgError = false;
               setTimeout(() => {
                 this._Router.navigate(['/login']);
               }, 1000);
